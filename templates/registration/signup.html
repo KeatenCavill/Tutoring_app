@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+
+<h2> Sign Up</h2>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    <p><label>First name</label><br>
+     <input type="text" name="first_name"></p>
+
+    <p><label>Last name</label><br>
+     <input type="text" name="last_name"></p>
+
+    <p><label>Email</label><br>
+     <input type="email" name="email"></p>
+
+    <fieldset>
+        <legend>Tutor Details</legend>
+
+        <p><label>Class You tutor</label><br>
+            <input type="text" name="subject" required>
+        </p>
+
+        <table>
+            <thead><tr><th>Day</th><th>Start</th><th>End</th></tr></thead>
+            <tbody>
+                <tr><td>Mon</td><td><input type="time" name="mon_start"></td><td><input type="time" name="mon_end"></td></tr>
+                <tr><td>Tue</td><td><input type="time" name="tue_start"></td><td><input type="time" name="tue_end"></td></tr>
+                <tr><td>Wed</td><td><input type="time" name="wed_start"></td><td><input type="time" name="wed_end"></td></tr>
+                <tr><td>Thu</td><td><input type="time" name="thu_start"></td><td><input type="time" name="thu_end"></td></tr>
+                <tr><td>Fri</td><td><input type="time" name="fri_start"></td><td><input type="time" name="fri_end"></td></tr>
+            </tbody>
+        </table>
+
+        <p><label>Short description</label><br>
+        <textarea name="description" rows="5" placeholder="A bit about yourself and what you can help tutor..."></textarea>
+        </p>
+
+
+    </fieldset>
+
+
+    <button type="submit">Sign Up</button>
+</form>
+
+{% endblock content %}
+
+</html>
