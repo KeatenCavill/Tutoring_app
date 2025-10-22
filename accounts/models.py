@@ -26,4 +26,4 @@ class TutorProfile(models.Model):
     description = models.TextField(blank=True, max_length=10000)
 
     def __str__(self):
-        return f"{self.user.username} - {self.subject or "No subject set"}"
+      return f"{self.user.username} - {self.subject or 'No subject set'}"
