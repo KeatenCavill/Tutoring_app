@@ -1,4 +1,5 @@
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
@@ -49,3 +50,10 @@ class SignUpView(CreateView):
     
 
         return redirect(self.success_url)
+    
+#@login_required
+#def edit_profile(request):
+#    
+#    profile, _ = TutorProfile.object.get_or_create(user=request.user)
+#
+#    if request.method == "POST":
