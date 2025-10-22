@@ -1,86 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container mt-4">
-  <h2 class="mb-4 text-center">Tutoring Hours</h2>
+<div>
+  <h2>Tutoring Hours</h2>
 
   {% if tutors %}
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      {% for tutor in tutors %}
-      <div class="col">
-        <!-- Make the entire card clickable -->
-        <a href="{% url 'tutor-detail' tutor.id %}" class="text-decoration-none">
-          <div class="card shadow-sm hover-shadow" style="transition: all 0.3s; cursor: pointer;">
-            <div class="card-body">
-              <h5 class="card-title">
-                {% if tutor.user.first_name or tutor.user.last_name %}
-                  {{ tutor.user.first_name }} {{ tutor.user.last_name }}
-                {% else %}
-                  {{ tutor.user.username }}
-                {% endif %}
-              </h5>
-              
-              {% if tutor.subject %}
-              <h6 class="card-subtitle mb-2 text-muted">{{ tutor.subject }}</h6>
-              {% endif %}
-              
-              {% if tutor.description %}
-              <p class="card-text">{{ tutor.description|truncatewords:20 }}</p>
-              {% endif %}
+    {% for tutor in tutors %}
+    <div>
+      <a href="{% url 'tutor-detail' tutor.id %}">
+        <h3>
+          {% if tutor.user.first_name or tutor.user.last_name %}
+            {{ tutor.user.first_name }} {{ tutor.user.last_name }}
+          {% else %}
+            {{ tutor.user.username }}
+          {% endif %}
+        </h3>
+        
+        {% if tutor.subject %}
+        <p><strong>{{ tutor.subject }}</strong></p>
+        {% endif %}
+        
+        {% if tutor.description %}
+        <p>{{ tutor.description }}</p>
+        {% endif %}
 
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>Day</th>
-                    <th>Start</th>
-                    <th>End</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% if tutor.mon_start %}
-                  <tr><td>Mon</td><td>{{ tutor.mon_start }}</td><td>{{ tutor.mon_end }}</td></tr>
-                  {% endif %}
-                  {% if tutor.tue_start %}
-                  <tr><td>Tue</td><td>{{ tutor.tue_start }}</td><td>{{ tutor.tue_end }}</td></tr>
-                  {% endif %}
-                  {% if tutor.wed_start %}
-                  <tr><td>Wed</td><td>{{ tutor.wed_start }}</td><td>{{ tutor.wed_end }}</td></tr>
-                  {% endif %}
-                  {% if tutor.thu_start %}
-                  <tr><td>Thu</td><td>{{ tutor.thu_start }}</td><td>{{ tutor.thu_end }}</td></tr>
-                  {% endif %}
-                  {% if tutor.fri_start %}
-                  <tr><td>Fri</td><td>{{ tutor.fri_start }}</td><td>{{ tutor.fri_end }}</td></tr>
-                  {% endif %}
-                  
-                  {% if not tutor.mon_start and not tutor.tue_start and not tutor.wed_start and not tutor.thu_start and not tutor.fri_start %}
-                  <tr>
-                    <td colspan="3" class="text-center text-muted">
-                      No availability set
-                    </td>
-                  </tr>
-                  {% endif %}
-                </tbody>
-              </table>
-              <div class="text-end">
-                <small class="text-primary">Click to view details →</small>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      {% endfor %}
+        <p><strong>Availability:</strong></p>
+        {% if tutor.mon_start %}
+        <p>Mon: {{ tutor.mon_start }} - {{ tutor.mon_end }}</p>
+        {% endif %}
+        {% if tutor.tue_start %}
+        <p>Tue: {{ tutor.tue_start }} - {{ tutor.tue_end }}</p>
+        {% endif %}
+        {% if tutor.wed_start %}
+        <p>Wed: {{ tutor.wed_start }} - {{ tutor.wed_end }}</p>
+        {% endif %}
+        {% if tutor.thu_start %}
+        <p>Thu: {{ tutor.thu_start }} - {{ tutor.thu_end }}</p>
+        {% endif %}
+        {% if tutor.fri_start %}
+        <p>Fri: {{ tutor.fri_start }} - {{ tutor.fri_end }}</p>
+        {% endif %}
+        
+        {% if not tutor.mon_start and not tutor.tue_start and not tutor.wed_start and not tutor.thu_start and not tutor.fri_start %}
+        <p>No availability set</p>
+        {% endif %}
+        
+        <p>Click for details</p>
+      </a>
+      <hr>
     </div>
+    {% endfor %}
   {% else %}
-    <p class="text-center">No tutors have added hours yet.</p>
+    <p>No tutors have added hours yet.</p>
   {% endif %}
 </div>
-
-<style>
-.hover-shadow:hover {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-  transform: translateY(-2px);
-}
-</style>
 
 {% endblock %}
