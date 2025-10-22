@@ -4,13 +4,22 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .models import TutorProfile
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class TutorListView(ListView):
     model = TutorProfile
     template_name = "home.html"
     context_object_name = "tutors"
+
+class TutorDetailView(DetailView):
+    model = TutorProfile
+    template_name = "tutor_detail.html"
+    context_object_name = "tutor"
+    
+    def get_object(self):
+        return get_object_or_404(TutorProfile, id=self.kwargs['pk'])
 
 
 
