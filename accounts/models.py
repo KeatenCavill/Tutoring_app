@@ -17,8 +17,8 @@ class TutorProfile(models.Model):
     wed_start = models.TimeField(null=True, blank= True)
     wed_end = models.TimeField(null=True, blank= True)
 
-    thur_start = models.TimeField(null=True, blank= True)
-    thur_end = models.TimeField(null=True, blank= True)
+    thu_start = models.TimeField(null=True, blank= True)
+    thu_end = models.TimeField(null=True, blank= True)
 
     fri_start = models.TimeField(null=True, blank= True)
     fri_end = models.TimeField(null=True, blank= True)

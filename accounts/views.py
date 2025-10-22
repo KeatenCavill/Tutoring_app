@@ -9,8 +9,9 @@ from django.views.generic import ListView
 # Create your views here.
 class TutorListView(ListView):
     model = TutorProfile
-    template_name = "templates/home.html"
+    template_name = "home.html"
     context_object_name = "tutors"
+
 
 
 class SignUpView(CreateView):
@@ -37,8 +38,8 @@ class SignUpView(CreateView):
                 "tue_end": self.request.POST.get("tue_end") or None,
                 "wed_start": self.request.POST.get("wed_start") or None,
                 "wed_end": self.request.POST.get("wed_end") or None,
-                "thu_start": self.request.POST.get("thu_start") or None,  # CHANGED: "thu_start"
-                "thu_end": self.request.POST.get("thu_end") or None,      # CHANGED: "thu_end"
+                "thu_start": self.request.POST.get("thu_start") or None,
+                "thu_end": self.request.POST.get("thu_end") or None,
                 "fri_start": self.request.POST.get("fri_start") or None,
                 "fri_end": self.request.POST.get("fri_end") or None,
             }
@@ -50,7 +51,7 @@ class SignUpView(CreateView):
                 "mon_start", "mon_end",
                 "tue_start", "tue_end", 
                 "wed_start", "wed_end",
-                "thu_start", "thu_end",  # CHANGED: "thu_start", "thu_end"
+                "thu_start", "thu_end",  
                 "fri_start", "fri_end"
             ]:
                 setattr(profile, f, self.request.POST.get(f) or getattr(profile, f))

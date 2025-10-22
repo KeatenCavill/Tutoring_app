@@ -14,8 +14,8 @@ class TutorProfileAdmin(admin.ModelAdmin):
         "tue_end",
         "wed_start",
         "wed_end",
-        "thur_start",
-        "thur_end",
+        "thu_start",
+        "thu_end",
         "fri_start",
         "fri_end",
     )
