@@ -4,7 +4,7 @@ from django.conf import settings
 # Create your models here.
 
 class TutorProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='tutor_profile')
 
     subject = models.CharField("Classes you tutor? ", max_length=150)
 
@@ -17,8 +17,8 @@ class TutorProfile(models.Model):
     wed_start = models.TimeField(null=True, blank= True)
     wed_end = models.TimeField(null=True, blank= True)
 
-    thur_start = models.TimeField(null=True, blank= True)
-    thur_end = models.TimeField(null=True, blank= True)
+    thu_start = models.TimeField(null=True, blank= True)
+    thu_end = models.TimeField(null=True, blank= True)
 
     fri_start = models.TimeField(null=True, blank= True)
     fri_end = models.TimeField(null=True, blank= True)
@@ -26,4 +26,4 @@ class TutorProfile(models.Model):
     description = models.TextField(blank=True, max_length=10000)
 
     def __str__(self):
-        return f"{self.user.username} - {self.subject or 'No subject set'}"
+      return f"{self.user.username} - {self.subject or 'No subject set'}"

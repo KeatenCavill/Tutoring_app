@@ -1,10 +1,58 @@
-
-<html lang="en">
 {% extends "base.html" %}
+{% block content %}
 
-<body>
-WOW Look at this home page, omg
-<div></div>
+<div>
+  <h2>Tutoring Hours</h2>
 
-</body>
-</html>
+  {% if tutors %}
+    {% for tutor in tutors %}
+    <div>
+      <a href="{% url 'tutor-detail' tutor.id %}">
+        <h3>
+          {% if tutor.user.first_name or tutor.user.last_name %}
+            {{ tutor.user.first_name }} {{ tutor.user.last_name }}
+          {% else %}
+            {{ tutor.user.username }}
+          {% endif %}
+        </h3>
+        
+        {% if tutor.subject %}
+        <p><strong>{{ tutor.subject }}</strong></p>
+        {% endif %}
+        
+        {% if tutor.description %}
+        <p>{{ tutor.description }}</p>
+        {% endif %}
+
+        <p><strong>Availability:</strong></p>
+        {% if tutor.mon_start %}
+        <p>Mon: {{ tutor.mon_start }} - {{ tutor.mon_end }}</p>
+        {% endif %}
+        {% if tutor.tue_start %}
+        <p>Tue: {{ tutor.tue_start }} - {{ tutor.tue_end }}</p>
+        {% endif %}
+        {% if tutor.wed_start %}
+        <p>Wed: {{ tutor.wed_start }} - {{ tutor.wed_end }}</p>
+        {% endif %}
+        {% if tutor.thu_start %}
+        <p>Thu: {{ tutor.thu_start }} - {{ tutor.thu_end }}</p>
+        {% endif %}
+        {% if tutor.fri_start %}
+        <p>Fri: {{ tutor.fri_start }} - {{ tutor.fri_end }}</p>
+        {% endif %}
+        
+        {% if not tutor.mon_start and not tutor.tue_start and not tutor.wed_start and not tutor.thu_start and not tutor.fri_start %}
+        <p>No availability set</p>
+        {% endif %}
+        
+        <p>Click for details</p>
+      </a>
+      <hr>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p>No tutors have added hours yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

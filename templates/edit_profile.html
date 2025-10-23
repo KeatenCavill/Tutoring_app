@@ -1,0 +1,33 @@
+<html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit My Tutor Profile</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <p><label>Class You tutor</label><br>
+    <input type="text" name="subject" required>
+    </p>
+
+    <table>
+        <thead><tr><th>Day</th><th>Start</th><th>End</th></tr></thead>
+        <tbody>
+           <tr><td>Mon</td><td><input type="time" name="mon_start"></td><td><input type="time" name="mon_end"></td></tr>
+           <tr><td>Tue</td><td><input type="time" name="tue_start"></td><td><input type="time" name="tue_end"></td></tr>
+            <tr><td>Wed</td><td><input type="time" name="wed_start"></td><td><input type="time" name="wed_end"></td></tr>
+            <tr><td>Thur</td><td><input type="time" name="thur_start"></td><td><input type="time" name="thur_end"></td></tr>
+            <tr><td>Fri</td><td><input type="time" name="fri_start"></td><td><input type="time" name="fri_end"></td></tr>
+        </tbody>
+    </table>
+    <p><label>Short description</label><br>
+    <textarea name="description" rows="5" placeholder="A bit about yourself and what you can help tutor..."></textarea>
+    </p>
+
+    <br>
+    <button type="submit">Save</button>
+    <a href="{% url 'my_profile' %}">Cancel</a>
+
+</form>
+{% endblock %}
+</html>

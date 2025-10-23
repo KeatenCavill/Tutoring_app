@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html" %}
 {% block content %}
 
 <h2> Sign Up</h2>
@@ -13,8 +14,9 @@
      <input type="text" name="last_name"></p>
 
     <p><label>Email</label><br>
-     <input type="email" name="email"></p>
-
+     <input type="email" name="email">
+    </p>
+  
     <fieldset>
         <legend>Tutor Details</legend>
 
@@ -28,7 +30,7 @@
                 <tr><td>Mon</td><td><input type="time" name="mon_start"></td><td><input type="time" name="mon_end"></td></tr>
                 <tr><td>Tue</td><td><input type="time" name="tue_start"></td><td><input type="time" name="tue_end"></td></tr>
                 <tr><td>Wed</td><td><input type="time" name="wed_start"></td><td><input type="time" name="wed_end"></td></tr>
-                <tr><td>Thu</td><td><input type="time" name="thu_start"></td><td><input type="time" name="thu_end"></td></tr>
+                <tr><td>Thur</td><td><input type="time" name="thur_start"></td><td><input type="time" name="thur_end"></td></tr>
                 <tr><td>Fri</td><td><input type="time" name="fri_start"></td><td><input type="time" name="fri_end"></td></tr>
             </tbody>
         </table>

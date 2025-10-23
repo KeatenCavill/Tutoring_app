@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <h1>
+    {% if tutor.user.first_name or tutor.user.last_name %}
+      {{ tutor.user.first_name }} {{ tutor.user.last_name }}
+    {% else %}
+      {{ tutor.user.username }}
+    {% endif %}
+  </h1>
+
+  {% if tutor.user.email %}
+  <p>Email: {{ tutor.user.email }}</p>
+  {% endif %}
+
+  <h2>Classes I Tutor</h2>
+  <p><strong>{{ tutor.subject }}</strong></p>
+  {% if tutor.description %}
+  <p>{{ tutor.description }}</p>
+  {% endif %}
+
+  <h2>Availability</h2>
+  
+  <p><strong>Monday:</strong> 
+    {% if tutor.mon_start %}
+      {{ tutor.mon_start }} - {{ tutor.mon_end }}
+    {% else %}
+      Not available
+    {% endif %}
+  </p>
+
+  <p><strong>Tuesday:</strong> 
+    {% if tutor.tue_start %}
+      {{ tutor.tue_start }} - {{ tutor.tue_end }}
+    {% else %}
+      Not available
+    {% endif %}
+  </p>
+
+  <p><strong>Wednesday:</strong> 
+    {% if tutor.wed_start %}
+      {{ tutor.wed_start }} - {{ tutor.wed_end }}
+    {% else %}
+      Not available
+    {% endif %}
+  </p>
+
+  <p><strong>Thursday:</strong> 
+    {% if tutor.thu_start %}
+      {{ tutor.thu_start }} - {{ tutor.thu_end }}
+    {% else %}
+      Not available
+    {% endif %}
+  </p>
+
+  <p><strong>Friday:</strong> 
+    {% if tutor.fri_start %}
+      {{ tutor.fri_start }} - {{ tutor.fri_end }}
+    {% else %}
+      Not available
+    {% endif %}
+  </p>
+
+  <a href="{% url 'home' %}">Back to All Tutors</a>
+</div>
+
+{% endblock %}

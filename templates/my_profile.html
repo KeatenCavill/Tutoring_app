@@ -1,0 +1,83 @@
+<html>
+    {% extends "base.html" %}
+    {% block content %}
+
+    <h1>My Tutor Profile</h1>
+
+    <p><strong>Name:</strong>
+        {% if request.user.first_name or request.user.last_name %}
+            {{ request.user.first_name }} {{ request.user.last_name}}
+        {% else %}
+            {{ request.user.username }}
+        {% endif %}
+    </p>
+
+    {% if request.user.email %}
+    <p><strong>Email:</strong>
+        {{request.user.email}}
+    </p>
+    {% endif %}
+
+  <p><strong>Class:</strong> {{ profile.subject|default:"(not set)" }}</p>
+
+    <h3><strong>Schedule</strong></h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><strong>Mon:</strong></td>
+            <td>
+        {% if profile.mon_start %}
+          {{ profile.mon_start|time:"g:i A" }}
+          {% if profile.mon_end %} - {{ profile.mon_end|time:"g:i A" }}{% endif %}
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Tue:</strong></td>
+      <td>
+        {% if profile.tue_start %}
+          {{ profile.tue_start|time:"g:i A" }}
+          {% if profile.tue_end %} - {{ profile.tue_end|time:"g:i A" }}{% endif %}
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Wed:</strong></td>
+      <td>
+        {% if profile.wed_start %}
+          {{ profile.wed_start|time:"g:i A" }}
+          {% if profile.wed_end %} - {{ profile.wed_end|time:"g:i A" }}{% endif %}
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Thu:</strong></td>
+      <td>
+        {% if profile.thu_start %}
+          {{ profile.thu_start|time:"g:i A" }}
+          {% if profile.thu_end %} - {{ profile.thu_end|time:"g:i A" }}{% endif %}
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Fri:</strong></td>
+      <td>
+        {% if profile.fri_start %}
+          {{ profile.fri_start|time:"g:i A" }}
+          {% if profile.fri_end %} - {{ profile.fri_end|time:"g:i A" }}{% endif %}
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+  </tbody>
+    </table>
+   <br>
+    
+    {% if profile.description %}
+    <h3><p><strong>About me:</strong></h3>
+        {{ profile.description|linebreaksbr }}
+    </p>
+    {% endif %}
+    
+
+    {% endblock %}
+</html>
